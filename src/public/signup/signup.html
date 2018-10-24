@@ -1,0 +1,81 @@
+<div class="container">
+  <h2 id="signup-title" class="text-center">Sign Up to Receive Our Newsletter</h2>
+
+  <div ng-if="signUpCtrl.submitted" class="alert alert-warning">Your information has been saved</div>
+
+
+  <form class="form form-horizontal" name="signUpForm" novalidate ng-submit="processForm()" ng-if="!signUpCtrl.submitted">
+    <div class="form-group">
+      <label class="col-sm-3">First Name</label>
+      <div class="col-sm-4">
+        <input type="text" ng-model="signUpCtrl.info.firstName" name="firstName" required class="form-control">
+      </div>
+      <div class="col-sm-4">
+        <span ng-if="signUpForm.firstName.$invalid && signUpForm.firstName.$touched">
+          First name is required
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3">Last Name</label>
+      <div class="col-sm-4">
+        <input type="text" ng-model="signUpCtrl.info.lastName" name="lastName" required class="form-control">
+      </div>
+      <div class="col-sm-4">
+        <span ng-if="signUpForm.lastName.$invalid && signUpForm.lastName.$touched">
+          Last name is required
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3">Email</label>
+      <div class="col-sm-4">
+        <input type="email" ng-model="signUpCtrl.info.email" name="email" required class="form-control">
+      </div>
+      <div class="col-sm-4">
+        <span ng-if="signUpForm.email.$invalid && signUpForm.email.$touched">
+          A valid email is required
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3">Phone number</label>
+      <div class="col-sm-4">
+        <input type="text" ng-model="signUpCtrl.info.phone" name="phone" required pattern="(\d{3})-(\d{3})-(\d{4})" class="form-control">
+      </div>
+      <div class="col-sm-4">
+        <span ng-if="signUpForm.phone.$invalid && signUpForm.phone.$touched">
+          A valid phone number is required (###-###-####)
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-sm-3">What is your favorite menu item?</label>
+      <div class="col-sm-4">
+        <input type="text" ng-model="signUpCtrl.info.favorite" name="favorite" required class="form-control" ng-blur="signUpCtrl.validateFavorite()">
+      </div>
+      <div class="col-sm-4">
+        <span ng-if="signUpForm.favorite.$invalid && signUpForm.favorite.$touched">
+          Please enter your favorite menu item
+        </span>
+      </div>
+    </div>
+
+    <div ng-if="signUpCtrl.invalidFavorite" class="alert alert-warning">
+            No such menu number exists
+          </div>
+
+    <div class="form-group">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-4">
+        <button ng-disabled="signUpForm.$invalid" ng-click="signUpCtrl.submit()" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+
+
+  </form>
+</div>
